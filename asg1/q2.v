@@ -1,5 +1,8 @@
 
-module COMPARE(input [3:0] A, input [3:0] B, output [3:0] comp_AB, output comp);
+module COMPARE(
+  input [3:0] A, input [3:0] B,
+  output [3:0] comp_AB, output comp
+);
 
   wire t1, t2;
 
@@ -35,7 +38,8 @@ module TEST();
         " > A=%b, B=%b\n",
         " | | A_xnor_B=%b, COMPARE=%b"
       },
-      A, B, comp_AB, comp);
+      A, B, comp_AB, comp
+    );
     $dumpfile("q2.vcd");
     $dumpvars(0, TEST);
 

@@ -1,6 +1,9 @@
 
-module AND(input A, input B, input C, output and_ABC);
-  
+module AND(
+  input A, input B, input C,
+  output and_ABC
+);
+
   wire t;
 
   and AB(t, A, B);
@@ -9,8 +12,11 @@ module AND(input A, input B, input C, output and_ABC);
 endmodule
 
 
-module OR(input A, input B, input C, output or_ABC);
-  
+module OR(
+  input A, input B, input C,
+  output or_ABC
+);
+
   wire t;
 
   or AB(t, A, B);

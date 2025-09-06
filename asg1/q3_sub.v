@@ -1,6 +1,7 @@
 
 module HALF_SUB (
-  input A, input B, output dif_AB, output brrw_AB
+  input A, input B,
+  output dif_AB, output brrw_AB
 );
 
   // diff = A ^ B
@@ -15,7 +16,8 @@ module HALF_SUB (
 endmodule
 
 module FULL_SUB (
-  input A, input B, input Din, output dif_ABC, output brrw_ABC
+  input A, input B, input Din,
+  output dif_ABC, output brrw_ABC
 );
 
   wire dif_AB, brrw_AB, brrw2;
@@ -50,7 +52,9 @@ module TEST();
         " | > Full Add (A, B, C)\n",
         " | | | s=%b, c=%b"
       },
-      A, B, C, dif_AB, brrw_AB, dif_ABC, brrw_ABC);
+      A, B, C, dif_AB, brrw_AB,
+      dif_ABC, brrw_ABC
+    );
     $dumpfile("q3_sub.vcd");
     $dumpvars(0, TEST);
 

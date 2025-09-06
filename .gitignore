@@ -1,2 +1,32 @@
+# Verilog simulation files
 **/*.vcd
 **/*.vvp
+
+# Python virtual environment
+.venv
+.env
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Generated images and outputs
+**/imgs/
+test_termshot_output.png
+
+# OS specific files
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
+
+# Typst files, as they are to be written on own
+**/*.typ

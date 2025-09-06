@@ -1,0 +1,7 @@
+# Verilog Automation Framework Requirements
+matplotlib>=3.5.0
+vcdvcd>=2.0.0
+
+# Note: termshot is a standalone executable, not a Python package
+# Download from: https://github.com/homeport/termshot
+# Make sure it's in your PATH

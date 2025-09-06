@@ -1,6 +1,7 @@
 
 module FULL_ADD (
-  input A, input B, input C, output sum_ABC, output carry_ABC
+  input A, input B, input C,
+  output sum_ABC, output carry_ABC
 );
 
   wire xor_AB;
@@ -10,7 +11,7 @@ module FULL_ADD (
   xor (sum_ABC, xor_AB, C);
 
   wire and_AB, and_C_xor_AB;
-  
+
   and (and_AB, A, B);
   and (and_C_xor_AB, C, xor_AB);
 
@@ -20,7 +21,8 @@ module FULL_ADD (
 endmodule
 
 module HALF_ADD (
-  input A, input B, output sum_AB, output carry_AB
+  input A, input B,
+  output sum_AB, output carry_AB
 );
 
   FULL_ADD g1 (A, B, 0, sum_AB, carry_AB);
@@ -51,7 +53,9 @@ module TEST();
         " | > Full Add (A, B, C)\n",
         " | | | s=%b, c=%b"
       },
-      A, B, C, sum_AB, carry_AB, sum_ABC, carry_ABC);
+      A, B, C, sum_AB, carry_AB,
+      sum_ABC, carry_ABC
+    );
     $dumpfile("q3_add.vcd");
     $dumpvars(0, TEST);
 
