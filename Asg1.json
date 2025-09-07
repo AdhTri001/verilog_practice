@@ -5,37 +5,57 @@
       "name": "q1.v",
       "vcd_file": "q1.vcd",
       "variables": null,
-      "module": "TEST"
+      "module": "TEST",
+      "plot": true
     },
     {
       "name": "q2.v",
       "vcd_file": "q2.vcd",
       "variables": null,
-      "module": "TEST"
+      "module": "TEST",
+      "plot": true
     },
     {
       "name": "q3_add.v",
       "vcd_file": "q3_add.vcd",
-      "variables": ["a", "b", "sum", "carry"],
-      "module": "TEST"
+      "variables": null,
+      "module": "TEST",
+      "plot": true
     },
     {
       "name": "q3_sub.v",
       "vcd_file": "q3_sub.vcd",
-      "variables": ["a", "b", "diff", "borrow"],
-      "module": "TEST"
+      "variables": null,
+      "module": "TEST",
+      "plot": true
     },
     {
       "name": "q4_dec.v",
       "vcd_file": "q4_dec.vcd",
       "variables": null,
-      "module": "TEST"
+      "module": "TEST",
+      "plot": true
     },
     {
       "name": "q4_mux.v",
       "vcd_file": "q4_mux.vcd",
       "variables": null,
-      "module": "TEST"
+      "module": "TEST",
+      "plot": true
+    },
+    {
+      "name": "q5.v",
+      "vcd_file": "q5.vcd",
+      "variables": null,
+      "module": "TEST",
+      "plot": true
+    },
+    {
+      "name": "q6.v",
+      "vcd_file": "q6.vcd",
+      "variables": null,
+      "module": "TEST",
+      "plot": false
     }
   ]
 }

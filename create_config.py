@@ -29,7 +29,8 @@ def create_sample_config(assignment_name: str, verilog_files: list) -> str:
             "name": vfile,
             "vcd_file": f"{base_name}.vcd",
             "variables": None,  # Plot all variables by default
-            "module": "TEST"
+            "module": "TEST",
+            "plot": True  # Enable plotting by default
         }
         config["files"].append(file_config)
 

@@ -1,5 +1,5 @@
 
-module MUX (
+module MUX4x1 (
   input  [3:0] I,
   input  [1:0] S,
   output Y
@@ -33,7 +33,7 @@ module TEST();
   reg [1:0] S;
   wire Y;
 
-  MUX dut (I, S, Y);
+  MUX4x1 dut (I, S, Y);
 
   initial begin
     $monitor(

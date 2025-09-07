@@ -2,7 +2,7 @@
 
 Repository for my Verilog assignment solutions plus a small Python automation helper.
 
-### Python Scripts
+### Scripts
 
 | Script | Purpose |
 |--------|---------|
@@ -10,6 +10,7 @@ Repository for my Verilog assignment solutions plus a small Python automation he
 | `create_config.py` | Convenience generator: scans assignment folders and writes a JSON config listing `.v` files. |
 | `vcd_info.py` | Raw VCD introspection utility (adapted from `vcdvcd` examples) to inspect structure/signals.
 | `test_termshot.py` (optional) | Quick check that `termshot` binary is in PATH. |
+| `ExecuteVerliog.ps1` | Simple PowerShell helper: compile provided Verilog sources with `iverilog`, run with `vvp`, optionally open the `.vcd` in GTKWave (`-Plot`). Useful for quick ad‑hoc runs on Windows. |
 
 ### Folder Structure
 
@@ -71,6 +72,19 @@ Outputs land in `asg1/imgs/`:
 * `*_terminal.png` – terminal run (if `termshot` available)
 * `*_waveform.png` – dark waveform with green traces + inline hex/bin values
 
+### Quick PowerShell Helper (optional)
+If you just want a fast manual compile/run (and optionally open GTKWave) without the Python pipeline, use the legacy script:
+
+```powershell
+# Compile & simulate q1.v (produces q1.vvp and runs it)
+./ExecuteVerliog.ps1 -Files q1.v
+
+# Compile multiple files then open GTKWave on resulting q1.vcd
+./ExecuteVerliog.ps1 -Files q1.v q1_tb.v -Plot
+```
+
+The Python automation is more feature‑rich (screenshots, annotated PNG waveforms); the PowerShell script remains for quick interactive edits.
+
 ### JSON File Fields
 | Field | Meaning | Default |
 |-------|---------|---------|
@@ -80,6 +94,7 @@ Outputs land in `asg1/imgs/`:
 | files[].vcd_file | VCD filename | `<basename>.vcd` |
 | files[].variables | Limit signals plotted | all |
 | files[].module | Module prefix to match | `TEST` |
+| files[].plot | Enable waveform plotting | `true` |
 
 ### Notes
 * Waveform renderer applies a compact GTKWave‑like style.

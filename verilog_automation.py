@@ -331,10 +331,11 @@ class VerilogAutomation:
                             values.append(int(value))
                     except (ValueError, TypeError):
                         values.append(0)
-                    if len(value) % 4 == 0:
-                        values_str.append(f"0x{int(value, 2):X}")
-                    else:
-                        values_str.append("0b"+value)
+                    # Format value as binary string for annotation
+                    # if len(value) % 4 == 0:
+                    #     values_str.append(f"0x{int(value, 2):X}")
+                    # else:
+                    values_str.append("0b"+value)
 
                 times.append(signal_data.endtime // 1000)  # End time in picoseconds
                 values.append(values[-1] if values else 0)
@@ -356,10 +357,11 @@ class VerilogAutomation:
                             next_time = times[j + 1] if j + 1 < len(times) else time + 1000
                             text_x = time
 
-                            # Add text annotation at vertical center with white color
+                            # Add text annotation at vertical center.
                             ax.text(text_x, center_y, value_str,
-                                   color='#FFFFFF', fontsize=7, fontweight='bold',
-                                   ha='left', va='center')
+                                color='#FFFFFF', fontsize=10,
+                                fontfamily=['Adwaita Mono'],
+                                ha='left', va='center')
 
                     # Signal name label on the left
                     ax.set_ylabel(signal_name, rotation=0, ha='right', va='center',
@@ -449,6 +451,9 @@ class VerilogAutomation:
         # Get module name (default to TEST)
         module = file_config.get('module', 'TEST')
 
+        # Check if plotting is enabled (default to True)
+        plot_enabled = file_config.get('plot', True)
+
         # Compile Verilog
         if not self.compile_verilog([file_name], base_name):
             return False
@@ -464,8 +469,11 @@ class VerilogAutomation:
 
         # Generate waveform plot
         waveform_image = f"{base_name}_waveform.png"
-        if not self.plot_vcd(vcd_file, variables, module, waveform_image):
-            print(f"Warning: Could not generate waveform plot for {vcd_file}")
+        if plot_enabled:
+            if not self.plot_vcd(vcd_file, variables, module, waveform_image):
+                print(f"Warning: Could not generate waveform plot for {vcd_file}")
+        else:
+            print(f"Skipping waveform plot for {file_name} (plot disabled in config)")
 
         print(f"✓ Completed processing {file_name}")
         return True

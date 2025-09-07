@@ -36,7 +36,7 @@ module TEST();
     $monitor(
       {
         " > A=%b, B=%b, C=%b\n",
-        " | | D="
+        " | | D=%b"
       },
       A, B, C, D
     );

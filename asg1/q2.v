@@ -36,7 +36,7 @@ module TEST();
     $monitor(
       {
         " > A=%b, B=%b\n",
-        " | | A_xnor_B=%b, COMPARE=%b"
+        " | | XNOR=%b, COMPARE=%b"
       },
       A, B, comp_AB, comp
     );
