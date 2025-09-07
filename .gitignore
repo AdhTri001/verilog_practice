@@ -30,3 +30,7 @@ Thumbs.db
 
 # Typst files, as they are to be written on own
 **/*.typ
+
+# Other files that are not to be tracked
+*.zip
+*.txt
