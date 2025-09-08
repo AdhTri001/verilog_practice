@@ -82,6 +82,7 @@ module TEST();
   SHIFTER2B sft2 (I, dir, O2);
 
   initial begin
+    $display("Solution by Adheesh Trivedi\n=====================");
     $monitor(
       {
         " > I = %b, dir = %b\n",

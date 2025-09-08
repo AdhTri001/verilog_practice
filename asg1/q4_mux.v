@@ -36,6 +36,7 @@ module TEST();
   MUX4x1 dut (I, S, Y);
 
   initial begin
+    $display("Solution by Adheesh Trivedi\n=====================");
     $monitor(
       {
         " > I=%b, S=%d\n",

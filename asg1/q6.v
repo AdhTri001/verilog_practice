@@ -80,6 +80,7 @@ module TEST();
   ALU alu (A, B, OP, Y0, Y1);
 
   initial begin
+    $display("Solution by Adheesh Trivedi\n=====================");
     $monitor(
       {
         " > A=%b, B=%b, OP=%b\n",

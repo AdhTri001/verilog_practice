@@ -33,6 +33,7 @@ module TEST();
   DEC dut (A, B, C, D);
 
   initial begin
+    $display("Solution by Adheesh Trivedi\n=====================");
     $monitor(
       {
         " > A=%b, B=%b, C=%b\n",

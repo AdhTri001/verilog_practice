@@ -32,7 +32,7 @@ module TEST();
 
 
   initial begin
-
+    $display("Solution by Adheesh Trivedi\n=====================");
     $monitor(
       {
         " > A=%b, B=%b\n",
