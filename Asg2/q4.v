@@ -1,18 +1,19 @@
 
 module PRIOENC8TO3(
   input [7:0] I,
-  output reg [2:0] O
+  output reg [2:0] O,
+  output reg valid
 );
   always @(I) begin
     if (I[7]) begin O = 3'b111; end
-    else if (I[6]) begin O = 3'b110; end
-    else if (I[5]) begin O = 3'b101; end
-    else if (I[4]) begin O = 3'b100; end
-    else if (I[3]) begin O = 3'b011; end
-    else if (I[2]) begin O = 3'b010; end
-    else if (I[1]) begin O = 3'b001; end
-    else if (I[0]) begin O = 3'b000; end
-    else begin O = 3'b000; end
+    else if (I[6]) begin O = 3'b110; valid = 1; end
+    else if (I[5]) begin O = 3'b101; valid = 1; end
+    else if (I[4]) begin O = 3'b100; valid = 1; end
+    else if (I[3]) begin O = 3'b011; valid = 1; end
+    else if (I[2]) begin O = 3'b010; valid = 1; end
+    else if (I[1]) begin O = 3'b001; valid = 1; end
+    else if (I[0]) begin O = 3'b000; valid = 1; end
+    else begin O = 3'b000; valid = 0; end
 
   end
 endmodule
@@ -23,15 +24,19 @@ endmodule
 module TEST();
   reg [7:0] I;
   wire [2:0] O;
+  wire valid;
 
-  PRIOENC8TO3 P(I, O);
+  PRIOENC8TO3 P(I, O, valid);
 
   initial begin
     $display("Solution by Adheesh Trivedi");
     $display("===========================");
-    $display("I          O  ");
-    $display("--------------");
-    $monitor("%b %b", I, O);
+    $dumpfile("q4.vcd");
+    $dumpvars(0, TEST);
+
+    $display("I          O  Valid");
+    $display("-------------------");
+    $monitor("%b %b %b", I, O, valid);
 
     I = 8'b00000000; #10;
     I = 8'b00000001; #10;

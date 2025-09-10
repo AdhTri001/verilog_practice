@@ -18,7 +18,6 @@ module FULL_ADDER (
   output S,
   output Co
 );
-
   assign S = A ^ B ^ Ci;
   assign Co = A & B | ((A | B) & Ci);
 
@@ -84,6 +83,9 @@ module TEST();
   initial begin
     $display("Solution by Adheesh Trivedi");
     $display("===========================");
+    $dumpfile("q6.vcd");
+    $dumpvars(0, TEST);
+
     $display("A  B  | M");
     $display("-----------");
     $monitor("%d %d | %d", A, B, M);

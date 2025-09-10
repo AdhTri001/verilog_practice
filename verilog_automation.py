@@ -348,8 +348,10 @@ class VerilogAutomation:
                     ax.step(times, values, where='post', linewidth=2, color='#00FF00')  # Green traces
 
                     # Add value annotations on the plot - centered vertically
-                    max_val = max(values) if values else 1
-                    center_y = max_val / 2  # Vertical center of the plot
+                    # Compute data-driven vertical center and padded y-limits
+                    y_min = min(values) if values else 0
+                    y_max = max(values) if values else 1
+                    center_y = (y_min + y_max) / 2  # Center between data bounds
 
                     for j, (time, value, value_str) in enumerate(zip(times[:-1], values[:-1], values_str)):
                         if j < len(times) - 1:  # Don't annotate the last extended point
@@ -376,9 +378,10 @@ class VerilogAutomation:
                     ax.grid(True, axis='x', alpha=0.4, color='#0080FF', linewidth=0.5)
                     ax.grid(True, axis='y', alpha=0.2, color='#0080FF', linewidth=0.3)
 
-                    # Set proper y-limits for digital signals
-                    max_val = max(values) if values else 1
-                    ax.set_ylim(-0.2, max_val + 0.2)
+                    # Set y-limits with slight padding beyond data bounds to avoid tight clipping
+                    y_span = max(1.0, y_max - y_min)
+                    y_pad = max(0.15 * y_span, 0.3)  # 15% of span or at least 0.3 units
+                    ax.set_ylim(y_min - y_pad, y_max + y_pad)
 
                     # Remove top and right spines, keep bottom for x-axis only on last subplot
                     ax.spines['top'].set_visible(False)

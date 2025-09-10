@@ -33,8 +33,11 @@ module TEST();
   initial begin
     $display("Solution by Adheesh Trivedi");
     $display("===========================");
+    $dumpfile("q3.vcd");
+    $dumpvars(0, TEST);
+
     $display("I        S   O");
-    $display("-------------------");
+    $display("---------------");
     $monitor("%b %b %b", I, S, O);
 
     I = 8'b00000000; S = 3'b000; #10;

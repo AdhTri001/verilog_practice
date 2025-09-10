@@ -39,6 +39,9 @@ module TEST();
   initial begin
     $display("Solution by Adheesh Trivedi");
     $display("===========================");
+    $dumpfile("q5.vcd");
+    $dumpvars(0, TEST);
+
     $display("A    B    Ci | S    Co");
     $display("----------------------");
     $monitor("%b %b %b  | %b %b", A, B, Ci, S, Co);

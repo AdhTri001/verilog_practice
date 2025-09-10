@@ -13,42 +13,42 @@
       "vcd_file": "q2_dec.vcd",
       "variables": null,
       "module": "TEST",
-      "plot": false
+      "plot": true
     },
     {
       "name": "q2_enc.v",
       "vcd_file": "q2_enc.vcd",
       "variables": null,
       "module": "TEST",
-      "plot": false
+      "plot": true
     },
     {
       "name": "q3.v",
       "vcd_file": "q3.vcd",
       "variables": null,
       "module": "TEST",
-      "plot": false
+      "plot": true
     },
     {
       "name": "q4.v",
       "vcd_file": "q4.vcd",
       "variables": null,
       "module": "TEST",
-      "plot": false
+      "plot": true
     },
     {
       "name": "q5.v",
       "vcd_file": "q5.vcd",
       "variables": null,
       "module": "TEST",
-      "plot": false
+      "plot": true
     },
     {
       "name": "q6.v",
       "vcd_file": "q6.vcd",
       "variables": null,
       "module": "TEST",
-      "plot": false
+      "plot": true
     }
   ]
 }
