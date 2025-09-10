@@ -25,12 +25,23 @@ def create_sample_config(assignment_name: str, verilog_files: list) -> str:
 
     for vfile in verilog_files:
         base_name = Path(vfile).stem
+        vfile_path = Path(assignment_name) / vfile
+        plot_enabled = True
+        try:
+            with open(vfile_path, 'r') as vf:
+                content = vf.read()
+                if "$dumpfile" not in content:
+                    plot_enabled = False
+        except Exception as e:
+            print(f"Warning: Could not read {vfile_path}: {e}")
+            plot_enabled = False
+
         file_config = {
             "name": vfile,
             "vcd_file": f"{base_name}.vcd",
             "variables": None,  # Plot all variables by default
             "module": "TEST",
-            "plot": True  # Enable plotting by default
+            "plot": plot_enabled
         }
         config["files"].append(file_config)
 

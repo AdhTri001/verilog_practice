@@ -1,5 +1,5 @@
 {
-  "folder": "Asg1",
+  "folder": "Asg2",
   "files": [
     {
       "name": "q1.v",
@@ -9,53 +9,46 @@
       "plot": true
     },
     {
-      "name": "q2.v",
-      "vcd_file": "q2.vcd",
+      "name": "q2_dec.v",
+      "vcd_file": "q2_dec.vcd",
       "variables": null,
       "module": "TEST",
-      "plot": true
+      "plot": false
     },
     {
-      "name": "q3_add.v",
-      "vcd_file": "q3_add.vcd",
+      "name": "q2_enc.v",
+      "vcd_file": "q2_enc.vcd",
       "variables": null,
       "module": "TEST",
-      "plot": true
+      "plot": false
     },
     {
-      "name": "q3_sub.v",
-      "vcd_file": "q3_sub.vcd",
+      "name": "q3.v",
+      "vcd_file": "q3.vcd",
       "variables": null,
       "module": "TEST",
-      "plot": true
+      "plot": false
     },
     {
-      "name": "q4_dec.v",
-      "vcd_file": "q4_dec.vcd",
+      "name": "q4.v",
+      "vcd_file": "q4.vcd",
       "variables": null,
       "module": "TEST",
-      "plot": true
-    },
-    {
-      "name": "q4_mux.v",
-      "vcd_file": "q4_mux.vcd",
-      "variables": null,
-      "module": "TEST",
-      "plot": true
+      "plot": false
     },
     {
       "name": "q5.v",
       "vcd_file": "q5.vcd",
       "variables": null,
       "module": "TEST",
-      "plot": true
+      "plot": false
     },
     {
       "name": "q6.v",
       "vcd_file": "q6.vcd",
       "variables": null,
       "module": "TEST",
-      "plot": true
+      "plot": false
     }
   ]
 }
