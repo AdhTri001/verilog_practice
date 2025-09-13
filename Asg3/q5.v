@@ -1,31 +1,53 @@
 `timescale 1ns / 1ps
 
-module N_BIT_BIDIR_SHIFT_REG #(parameter MSB = 8) (
-	input wire D, CLK, En, DIR, Rstn,
-	output reg [MSB-1:0] OUT
+// Simple D flip-flop with active-low synchronous reset
+module D_FLIP_FLOP (
+	input  wire D, CLK, Rst,
+	output reg  Q
 );
-	initial OUT = {MSB{1'b0}};
-
+	initial Q = 1'b0;
 	always @(posedge CLK) begin
-		if (!Rstn) begin
-			OUT <= {MSB{1'b0}};
-		end else if (En) begin
+		if (Rst) Q <= 1'b0;
+		else Q <= D;
+	end
+endmodule
+
+// N-bit bidirectional shift register built from D flip-flops
+module N_BIT_BIDIR_SHIFT_REG #(parameter MSB = 8) (
+	input wire D, CLK, En, DIR, Rst,
+	output wire [MSB-1:0] OUT
+);
+	reg [MSB-1:0] nxt;
+
+	always @(*) begin
+		// Hold by default when not enabled
+		nxt = OUT;
+		if (En) begin
 			case (DIR)
-				1'b0: OUT <= {OUT[MSB-2:0], D};
-				1'b1: OUT <= {D, OUT[MSB-1:1]};
+				1'b0: nxt = {OUT[MSB-2:0], D}; // shift left, insert at LSB
+				1'b1: nxt = {D, OUT[MSB-1:1]}; // shift right, insert at MSB
 			endcase
 		end
 	end
+
+	genvar i;
+	generate
+		for (i = 0; i < MSB; i = i + 1) begin : GEN_DFF
+			D_FLIP_FLOP dff_i (
+				nxt[i], CLK, Rst, OUT[i]
+			);
+		end
+	endgenerate
 endmodule
 
 
 module TEST();
 
-	reg D, CLK, En, DIR, Rstn;
+	reg D, CLK, En, DIR, Rst;
 	wire [7:0] OUT;
 
 	N_BIT_BIDIR_SHIFT_REG #(8) nbbsr (
-		D, CLK, En, DIR, Rstn, OUT
+		D, CLK, En, DIR, Rst, OUT
 	);
 
 	initial CLK = 0;
@@ -40,16 +62,16 @@ module TEST();
     $display("===========================");
 
 		$display("");
-		$display("Time   CLK Rstn En DIR D   OUT");
+		$display("Time   CLK Rst En DIR D   OUT");
 		$display("-----------------------------------");
-		$monitor("%6t %b    %b   %b  %b   %b   %b", $time, CLK, Rstn, En, DIR, D, OUT);
+		$monitor("%6t  %b   %b   %b  %b   %b   %b", $time, CLK, Rst, En, DIR, D, OUT);
 
 		// Reset low for a couple of clock edges (synchronous reset)
-		D = 0; En = 0; DIR = 0; Rstn = 0; #12;
-		Rstn = 1; #8;
+		D = 0; En = 0; DIR = 0; Rst = 1; #12;
+		En = 1; #8;
 
 		// Enable and shift left (DIR=0) while feeding data bits
-		En = 1; DIR = 0;
+		Rst = 0; DIR = 0;
 		D = 1; #10;
 		D = 0; #10;
 		D = 1; #10;
