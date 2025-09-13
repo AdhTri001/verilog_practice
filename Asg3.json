@@ -1,0 +1,47 @@
+{
+  "folder": "Asg3",
+  "files": [
+    {
+      "name": "q1.v",
+      "vcd_file": "q1.vcd",
+      "variables": null,
+      "module": "TEST",
+      "plot": true
+    },
+    {
+      "name": "q2.v",
+      "vcd_file": "q2.vcd",
+      "variables": null,
+      "module": "TEST",
+      "plot": true
+    },
+    {
+      "name": "q3.v",
+      "vcd_file": "q3.vcd",
+      "variables": null,
+      "module": "TEST",
+      "plot": true
+    },
+    {
+      "name": "q4.v",
+      "vcd_file": "q4.vcd",
+      "variables": null,
+      "module": "TEST",
+      "plot": true
+    },
+    {
+      "name": "q5.v",
+      "vcd_file": "q5.vcd",
+      "variables": null,
+      "module": "TEST",
+      "plot": true
+    },
+    {
+      "name": "q6.v",
+      "vcd_file": "q6.vcd",
+      "variables": null,
+      "module": "TEST",
+      "plot": true
+    }
+  ]
+}
