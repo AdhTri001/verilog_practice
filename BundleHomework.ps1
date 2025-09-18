@@ -1,3 +1,25 @@
+<#
+.SYNOPSIS
+Bundles Verilog (.v) and optional PDF files from a specified assignment folder into a zip archive for submission.
+
+.DESCRIPTION
+This script automates the process of packaging all Verilog source files (.v) and any PDF documents found in a given assignment directory into a single zip file using 7-Zip. It validates the existence of the assignment folder, checks for required files, and provides informative output about the bundling process. If a previous zip file exists, it is removed before creating a new one. The script displays the contents and size of the resulting zip archive upon completion.
+
+.PARAMETER Assignment
+The path to the assignment folder containing the files to be bundled. This parameter is mandatory.
+
+.EXAMPLE
+.\BundleHomework.ps1 -Assignment "hw1"
+Bundles all .v and .pdf files from the "hw1" folder into "hw1_submission.zip".
+
+.NOTES
+- Requires 7-Zip (`7z`) to be installed and available in the system PATH.
+- Only .v and .pdf files in the specified folder are included in the zip archive.
+- If no PDF files are found, the script continues with only the .v files.
+- If no .v files are found, the script exits with an error.
+
+#>
+
 param (
     [Parameter(Mandatory = $true)]
     [string]$Assignment

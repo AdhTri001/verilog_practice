@@ -46,12 +46,16 @@ def create_sample_config(assignment_name: str, verilog_files: list) -> str:
         }
         config["files"].append(file_config)
 
-    config_filename = f"{assignment_name}.json"
+    # Ensure config directory exists
+    config_dir = Path('config')
+    config_dir.mkdir(exist_ok=True)
+
+    config_filename = config_dir / f"{assignment_name}.json"
     with open(config_filename, 'w') as f:
         json.dump(config, f, indent=2)
 
     print(f"Created configuration file: {config_filename}")
-    return config_filename
+    return str(config_filename)
 
 def discover_verilog_files(directory: str) -> list:
     """
