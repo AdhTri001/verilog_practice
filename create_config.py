@@ -5,6 +5,7 @@ Example and testing script for Verilog Automation Framework
 
 import json
 import os
+import sys
 from pathlib import Path
 
 def create_sample_config(assignment_name: str, verilog_files: list) -> str:
@@ -78,37 +79,42 @@ def main():
     print("Verilog Automation Framework - Configuration Generator")
     print("=" * 60)
 
-    # Discover assignments
-    current_dir = Path.cwd()
-    print(f"Current directory: {current_dir}")
-
-    # Look for assignment directories
-    assignment_dirs = []
-    for item in current_dir.iterdir():
-        if item.is_dir() and not item.name.startswith('.'):
-            verilog_files = discover_verilog_files(item)
-            if verilog_files:
-                assignment_dirs.append((item.name, verilog_files))
-
-    if not assignment_dirs:
-        print("No assignment directories with Verilog files found.")
+    # Check command line arguments
+    if len(sys.argv) != 2:
+        print("Usage: python create_config.py <assignment_folder>")
+        print("Example: python create_config.py Asg1")
         return
 
-    print(f"\nFound {len(assignment_dirs)} assignment directories:")
-    for i, (dir_name, files) in enumerate(assignment_dirs, 1):
-        print(f"{i}. {dir_name} ({len(files)} Verilog files)")
-        for file in files:
-            print(f"   - {file}")
+    assignment_folder = sys.argv[1]
+    assignment_path = Path(assignment_folder)
 
-    # Create configurations for all assignments
-    print(f"\nCreating configuration files...")
-    for dir_name, files in assignment_dirs:
-        config_file = create_sample_config(dir_name, files)
+    # Check if the specified folder exists
+    if not assignment_path.exists():
+        print(f"Error: Directory '{assignment_folder}' not found.")
+        return
 
-    print(f"\n✓ Configuration files created!")
-    print(f"\nTo run automation for an assignment, use:")
-    for dir_name, _ in assignment_dirs:
-        print(f"  python verilog_automation.py {dir_name}.json")
+    if not assignment_path.is_dir():
+        print(f"Error: '{assignment_folder}' is not a directory.")
+        return
+
+    # Discover Verilog files in the specified directory
+    verilog_files = discover_verilog_files(assignment_folder)
+
+    if not verilog_files:
+        print(f"No Verilog files found in directory '{assignment_folder}'.")
+        return
+
+    print(f"Found {len(verilog_files)} Verilog files in '{assignment_folder}':")
+    for file in verilog_files:
+        print(f"   - {file}")
+
+    # Create configuration for the specified assignment
+    print(f"\nCreating configuration file for '{assignment_folder}'...")
+    config_file = create_sample_config(assignment_folder, verilog_files)
+
+    print(f"\n✓ Configuration file created: {config_file}")
+    print(f"\nTo run automation for this assignment, use:")
+    print(f"  python verilog_automation.py {config_file}")
 
 if __name__ == '__main__':
     main()
