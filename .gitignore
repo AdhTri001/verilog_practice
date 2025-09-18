@@ -9,10 +9,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Generated images and outputs
-**/imgs/
-test_termshot_output.png
-
 # OS specific files
 .DS_Store
 Thumbs.db
@@ -21,9 +17,6 @@ Thumbs.db
 
 # Editor files
 .vscode/
-*.swp
-*.swo
-*~
 
 # Log files
 *.log
